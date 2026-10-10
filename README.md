@@ -1,5 +1,9 @@
 # bolt.SE
 
+**English project page: https://jimmyyychen.github.io/bolt.SE/** (demos, architecture, and tech stack)
+
+[![bolt.SE project page](https://jimmyyychen.github.io/bolt.SE/assets/social-preview.png)](https://jimmyyychen.github.io/bolt.SE/)
+
 bolt.SE，旨在将大语言模型（LLM）的代码生成能力与现代软件工程最佳实践深度融合。该系统基于开源项目bolt.diy 构建，通过四个核心模块增强了LLM辅助开发的工程化程度：首先，API 优先开发模块基于OpenAPI规范实现API定义与管理，使LLM能够理解并生成符合接口规范的代码；其次，测试驱动开发（TDD）模块将“测试先行”理念与代码生成相结合，通过结构化测试约束引导LLM生成高质量代码；再次，模型上下文协议（MCP）模块提供标准化接口使LLM能够安全调用外部工具和数据源，突破知识局限；最后，持续集成与部署模块则结合了TDD模块与MCP模块，实现了从测试定义到自动部署的全链路自动化。
 
 ```mermaid
