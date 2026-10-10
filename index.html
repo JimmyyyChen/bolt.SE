@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>bolt.SE · Jimmy Chen</title>
+<meta name="description" content="bolt.SE, Jimmy Chen's 2025 project at Tsinghua University: API-first development, test-driven development, MCP integration, and CI/CD added to the open-source AI coding tool bolt.diy.">
+<meta property="og:title" content="bolt.SE · API-first development, TDD, MCP, and CI/CD for AI-assisted coding">
+<meta property="og:description" content="A 2025 project by Jimmy Chen: four software engineering modules built into a browser-based AI coding tool.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://jimmyyychen.github.io/bolt.SE/">
+<meta property="og:url" content="https://jimmyyychen.github.io/bolt.SE/">
+<meta property="og:image" content="https://jimmyyychen.github.io/bolt.SE/assets/social-preview.png">
+<meta name="twitter:image" content="https://jimmyyychen.github.io/bolt.SE/assets/social-preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="bolt.SE: API-first development, TDD, MCP, and CI/CD. A project by Jimmy Chen.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237645E8'/%3E%3Cpath d='M18 5L8 18h7l-1 9 11-15h-8z' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css?v=26">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#" aria-label="bolt.SE home">bolt<span>.SE</span></a>
+    <nav aria-label="Main navigation"><a href="#demo">Demo</a><a href="#built">What I built</a><a href="#stack">Stack</a><a class="nav-gh" href="https://github.com/JimmyyyChen/bolt.SE" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="nav-gh" href="https://www.linkedin.com/in/jimmychen-chingwen/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <h1>bolt<span>.SE</span></h1>
+    <p class="lede">Making AI-generated code follow API specs, pass tests, and run through CI/CD.</p>
+    <p class="intro">My 2025 undergraduate project at Tsinghua University’s School of Software. I extended <a href="https://github.com/stackblitz-labs/bolt.diy" target="_blank" rel="noopener noreferrer">bolt.diy</a>, an open-source tool that builds web apps from chat prompts inside the browser, with four modules that give the model real API specifications, tests to pass, access to external tools, and a path to a delivery pipeline.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://github.com/JimmyyyChen/bolt.SE" target="_blank" rel="noopener noreferrer">GitHub · Source code ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/jimmychen-chingwen/" target="_blank" rel="noopener noreferrer">LinkedIn · Jimmy Chen ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="demo" class="section">
+  <div class="wrap">
+    <h2>Demo: from prompt to pipeline</h2>
+    <p class="section-intro">A natural-language task manager is built with an attached API and supplied tests. The workflow then continues into GitLab through MCP.</p>
+    <div class="player">
+      <video id="todo-video" controls playsinline preload="metadata" poster="assets/todo-continuous-clean-poster.jpg" aria-label="Task manager demonstration: API-first development, TDD, MCP, and CI/CD"><source src="assets/todo-continuous-redacted.mp4?v=2" type="video/mp4"></video>
+      <ol class="chapters" data-video="todo-video" aria-label="Video chapters">
+        <li><button data-time="0">00:00</button><p>Attach the OpenAI API and the test file</p></li>
+        <li><button data-time="50">00:50</button><p>Generate code, run the tests, and start the app <span>4×</span></p></li>
+        <li><button data-time="68.75">01:08</button><p>Use the app; four task-operation tests pass</p></li>
+        <li><button data-time="116.75">01:56</button><p>Generate the GitLab CI configuration <span>3×</span></p></li>
+        <li><button data-time="145.75">02:25</button><p>GitLab MCP: create the repository and push code <span>4×</span></p></li>
+        <li><button data-time="195.75">03:15</button><p>The pipeline runs and fails at dependency installation</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="built" class="section">
+  <div class="wrap">
+    <h2>What I built</h2>
+    <p class="section-intro">Four modules on top of bolt.diy’s existing editor, model integration, and in-browser runtime. The work spans the UI, persistence, server routes, and the action runner of an existing TypeScript/Remix codebase, plus English/Chinese localization.</p>
+
+    <article class="module" id="api">
+      <div class="module-text">
+        <p class="module-num">01</p>
+        <h3>API-first development</h3>
+        <p><strong>Problem.</strong> Models guess at APIs they cannot see.</p>
+        <p><strong>What I built.</strong> An API Actions manager. You paste an OpenAPI schema (YAML or JSON) and choose an auth type; its operations are parsed automatically and the definition is saved in IndexedDB. Selected APIs are added to the model’s context and shown as tags on the message.</p>
+        <ol class="steps"><li>Paste spec</li><li>Parse operations</li><li>Select the API</li><li>Generate against it</li></ol>
+        <p class="seen">See it: <button data-video="todo-video" data-time="12">Task manager 00:12</button> <button data-video="iotdb-video" data-time="8">IoTDB 00:08</button></p>
+      </div>
+      <figure><a href="assets/api-actions-interface.png" target="_blank" rel="noopener"><img src="assets/api-actions-interface.png" width="3024" height="1740" loading="lazy" alt="API Actions panel with the OpenAI API enabled and its POST /chat/completions operation listed."></a><figcaption>API Actions panel with the OpenAI API selected. The interface is in Chinese.</figcaption></figure>
+    </article>
+
+    <article class="module" id="tdd">
+      <div class="module-text">
+        <p class="module-num">02</p>
+        <h3>Test-driven development</h3>
+        <p><strong>Problem.</strong> Generated code is rarely checked against the behavior it should have.</p>
+        <p><strong>What I built.</strong> A test editor that parses <code>describe</code>/<code>it</code> blocks into a navigable tree. Tests are written into the project before generation. A new <code>test</code> action runs Jest-style tests with Vitest in the browser runtime. When a run fails, an “Ask Bolt” button sends the failing output back to the model for repair.</p>
+        <p class="seen">See it: <button data-video="todo-video" data-time="106">Task manager 01:46</button> <a href="#calculator">Calculator failure → repair</a></p>
+      </div>
+      <figure class="diagram"><img src="assets/tdd-contribution.svg?v=3" width="800" height="230" loading="lazy" alt="Test cases constrain code generation; tests run in WebContainer; on failure, diagnostics return to the model for repair and the tests run again."><figcaption>Tests constrain generation. Failures loop back for repair and re-testing.</figcaption></figure>
+    </article>
+
+    <article class="module" id="mcp">
+      <div class="module-text">
+        <p class="module-num">03</p>
+        <h3>MCP integration</h3>
+        <p><strong>Problem.</strong> The model cannot see live systems such as databases or repositories.</p>
+        <p><strong>What I built.</strong> Server-side Model Context Protocol clients over stdio and SSE, plus a configuration panel that checks availability and lists each server’s tools. The tools go to the model for multi-step calling (up to 20 steps), and each call and its result appear in the chat as a tool record.</p>
+        <ol class="steps"><li>Configure server</li><li>Discover tools</li><li>Model calls tools</li><li>Results return to chat</li></ol>
+        <p class="seen">See it: <button data-video="iotdb-video" data-time="20">IoTDB 00:20</button> <button data-video="todo-video" data-time="145.75">Task manager 02:25</button></p>
+      </div>
+      <figure><a href="assets/mcp-configuration.png" target="_blank" rel="noopener"><img src="assets/mcp-configuration.png" width="3024" height="1964" loading="lazy" alt="MCP configuration panel: an available SSE connection to IoTDB exposing list_tables, describe_table, and read_query."></a><figcaption>An IoTDB server over SSE, exposing <code>list_tables</code>, <code>describe_table</code>, and <code>read_query</code>.</figcaption></figure>
+    </article>
+
+    <article class="module" id="cicd">
+      <div class="module-text">
+        <p class="module-num">04</p>
+        <h3>CI/CD</h3>
+        <p><strong>Problem.</strong> Generated apps stop at a local preview, disconnected from delivery.</p>
+        <p><strong>What I built.</strong> A workflow that combines TDD with GitLab MCP tools. The model writes GitLab CI configuration, creates a repository, and pushes the code; the push triggers a pipeline configured to test and deploy.</p>
+        <p><strong>Result.</strong> The pipeline was triggered and failed at dependency installation. Deployment to Vercel was not verified.</p>
+        <p class="seen">See it: <button data-video="todo-video" data-time="116.75">Task manager 01:56</button> <button data-video="todo-video" data-time="200">03:20</button></p>
+      </div>
+      <figure class="diagram"><img src="assets/cicd.svg?v=2" width="960" height="350" loading="lazy" alt="Define tests, generate and verify code, generate GitLab CI configuration, create a repository and push through MCP, trigger the pipeline, then the deployment target, drawn dashed because success was not verified."><figcaption>The dashed deployment stage is the target, not a verified result.</figcaption></figure>
+    </article>
+  </div>
+</section>
+
+<section id="more" class="section">
+  <div class="wrap">
+    <h2>More demos</h2>
+    <article class="evidence" id="iotdb">
+      <h3>IoTDB dashboard: MCP and API-first</h3>
+      <p class="section-intro">The model inspects a live IoTDB database through MCP, then builds a battery-data chart that reads from the attached IoTDB REST API.</p>
+      <div class="player">
+        <video id="iotdb-video" controls playsinline preload="metadata" poster="assets/iotdb-continuous-clean-poster.jpg" aria-label="IoTDB dashboard demonstration: MCP integration and API-first development"><source src="assets/iotdb-continuous-clean.mp4" type="video/mp4"></video>
+        <ol class="chapters" data-video="iotdb-video" aria-label="Video chapters">
+          <li><button data-time="0">00:00</button><p>Set up the IoTDB MCP server (three tools) and the REST API</p></li>
+          <li><button data-time="20">00:20</button><p>Inspect the database through MCP, then generate <span>4×</span></p></li>
+          <li><button data-time="36.25">00:36</button><p>Explore the chart; ask for a white background</p></li>
+          <li><button data-time="71.25">01:11</button><p>Apply the revision <span>3×</span></p></li>
+          <li><button data-time="79.583">01:19</button><p>Check the revised dashboard and tool results</p></li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="evidence" id="calculator">
+      <h3>Calculator: test failure and repair</h3>
+      <p class="section-intro">To exercise the feedback loop, I changed one assertion to <code>expect(add(2, 3)).toBe(0)</code>. The test failed, the model added a special case, and all 12 tests passed again. This shows the model responding to test feedback; the changed requirement is deliberately wrong, so it says nothing about arithmetic correctness.</p>
+      <div class="pair">
+        <figure><a href="assets/calculator-failure.png" target="_blank" rel="noopener"><img src="assets/calculator-failure.png" width="3024" height="1714" loading="lazy" alt="Calculator test run: 1 failed, 11 passed."></a><figcaption><strong>Before:</strong> 1 failed, 11 passed</figcaption></figure>
+        <figure><a href="assets/calculator-repaired.png" target="_blank" rel="noopener"><img src="assets/calculator-repaired.png" width="3024" height="1714" loading="lazy" alt="The model adds a special case for inputs 2 and 3; 12 tests pass."></a><figcaption><strong>After repair:</strong> 12 passed</figcaption></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="architecture" class="section">
+  <div class="wrap">
+    <h2>Architecture</h2>
+    <p class="section-intro">The four modules sit on top of the bolt.diy pipeline: model output is parsed into files and commands, then run in a browser runtime. CI/CD reuses the TDD and MCP mechanisms.</p>
+    <p class="legend"><span><i class="key-base"></i>bolt.diy foundation</span><span><i class="key-ext"></i>bolt.SE extensions (my work)</span></p>
+    <div class="scroll-frame"><img src="assets/overview.svg?v=5" width="1120" height="580" loading="lazy" alt="Architecture overview: API context, test-driven development, MCP tools, and CI/CD integration extend the bolt.diy foundation."></div>
+  </div>
+</section>
+
+<section id="stack" class="section">
+  <div class="wrap">
+    <h2>Tech stack</h2>
+    <dl class="stack">
+      <div><dt>Frontend</dt><dd><span><img src="assets/logos/typescript.svg" alt="">TypeScript</span><span><img src="assets/logos/react.svg" alt="">React</span><span><img src="assets/logos/remix.svg" alt="">Remix</span><span><img src="assets/logos/radixui.svg" alt="">Radix UI</span><span><img src="assets/logos/unocss.svg" alt="">UnoCSS</span><span>nanostores</span><span><img src="assets/logos/i18next.svg" alt="">i18next (English/Chinese)</span></dd></div>
+      <div><dt>AI and agents</dt><dd><span><img src="assets/logos/vercel.svg" alt="">Vercel AI SDK (streaming, tool calling)</span><span><img src="assets/logos/modelcontextprotocol.svg" alt="">MCP over stdio and SSE</span><span><img src="assets/logos/anthropic.svg" alt="">Anthropic Claude models</span></dd></div>
+      <div><dt>Specs and data</dt><dd><span><img src="assets/logos/openapiinitiative.svg" alt="">OpenAPI (YAML/JSON)</span><span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg>IndexedDB</span></dd></div>
+      <div><dt>Runtime and testing</dt><dd><span><img src="assets/logos/stackblitz.svg" alt="">WebContainer</span><span><img src="assets/logos/vitest.svg" alt="">Vitest</span><span>Prism.js + react-simple-code-editor (test editor)</span></dd></div>
+      <div><dt>Integrations</dt><dd><span><img src="assets/logos/gitlab.svg" alt="">GitLab CI</span><span>Apache IoTDB</span><span>SuperGateway (stdio → SSE)</span><span><img src="assets/logos/ngrok.svg" alt="">ngrok</span></dd></div>
+      <div><dt>Build and deployment</dt><dd><span><img src="assets/logos/vite.svg" alt="">Vite</span><span><img src="assets/logos/cloudflarepages.svg" alt="">Cloudflare Pages (Wrangler)</span><span><img src="assets/logos/electron.svg" alt="">Electron (desktop app)</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <p><strong>Jimmy Chen.</strong> Master’s student in AI Engineering at Carnegie Mellon University; studied software engineering at Tsinghua University. I focus on AI agents and full-stack development, and have built software and AI products at Microsoft, Z.ai, and ByteDance.</p>
+    <p class="actions"><a class="btn btn-primary" href="https://github.com/JimmyyyChen/bolt.SE" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="btn" href="https://www.linkedin.com/in/jimmychen-chingwen/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></p>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><p>bolt.SE · 2025</p><a href="#main">Back to top ↑</a></div></footer>
+<script src="script.js?v=4"></script>
+</body>
+</html>
